@@ -1,0 +1,19 @@
+TWO SUM
+to find the indexes of the number that sum upto a given target
+
+In this we cannot use two pointer approcah as the given array is not sorted
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> mp;
+    for(int i=0;i<nums.size();i++){
+        if(mp.find(target-nums[i])!=mp.end()){
+            return {mp[target-nums[i]],i};
+        }
+        mp[nums[i]]=i;
+    }
+    return {};
+}
+
+In this we are using a unordered_map which stores the number as key and the index number as pair of the key
+
+Basic approach is to run a double loop with i and j and check the sum at ith and jth index. (This is O(n^2) approach, hence not preferred)
