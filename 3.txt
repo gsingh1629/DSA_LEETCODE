@@ -1,0 +1,28 @@
+From a string get the length of longest string in which no alphabet is repeated 
+
+We can use Variable size sliding window to get this, we can take two pointers i and j to represent a window
+Use a unordered map to keep count of the alphabets, if size of map is equal to window size than we have no duplicates, else we need to shift the window from left
+and remove those elements of that index
+
+int lengthOfLongestSubstring(string s) {
+    int i=0,j=0,res=0;
+    unordered_map<char,int> mp;
+    while(j<s.size()){
+        mp[s[j]]++;
+        if(mp.size()==j-i+1){
+            res=max(res,j-i+1);
+            j++;
+        }
+        else if(mp.size()<j-i+1){
+            while(mp.size()<j-i+1){
+                mp[s[i]]--;
+                if(mp[s[i]]==0){
+                    mp.erase(s[i]);
+                }
+                i++;
+            }
+            j++;
+        }
+    }
+    return res;
+}
