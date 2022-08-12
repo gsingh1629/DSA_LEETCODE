@@ -1,0 +1,29 @@
+Given a string traverse it in zigzag manner 
+e.g. PAYPALISHIRING, r=3
+P   A   H   N
+A P L S I I G
+Y   I   R 
+ans -> PAHNAPLSIIGYIR
+
+create a bool varible that keeps track whether we are going up or down and according to that add the curr character in the vector
+
+string convert(string s, int numRows) {
+    if(numRows==1 || numRows>=s.size()){
+        return s;
+    }
+    vector<string> temp(numRows);
+    int curr=0;
+    bool down=false;
+    for(auto c:s){
+        temp[curr]+=c;
+        if(curr==0 || curr==numRows-1){
+            down=!down;
+        }
+        curr+=down?1:-1;
+    }
+    string res;
+    for(auto t:temp){
+        res+=t;
+    }
+    return res;
+}
