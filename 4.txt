@@ -1,0 +1,16 @@
+Given to arrays find the median considering them as a single array
+
+We can use extra space to store all the elements of both arrays and then according to the size of the final array we need to find the median i.e. if the number of
+elements is even or odd (NOT SO GOOD APPROACH but fine for BRUTE FORCE)
+
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> nums;
+    for(auto n:nums1){
+        nums.push_back(n);
+    }
+    for(auto n:nums2){
+        nums.push_back(n);
+    }
+    sort(nums.begin(),nums.end());
+    return nums.size()%2!=0? (double)(nums[nums.size()/2]) : (double)(nums[nums.size()/2] + nums[nums.size()/2 -1])/2;
+}
