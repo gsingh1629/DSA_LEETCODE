@@ -1,0 +1,26 @@
+Given a string convert that into integer
+
+Traverse the string using a pointer
+track empty space and move pointer
+check for sign if +/-
+if we get the numeric character then do rest of calcuations
+
+int myAtoi(string s) {
+    int sign=1;
+    int res=0;
+    int i=0;
+
+    while(i<s.size() && s[i]==' '){
+        i++;
+    }
+    if(i<s.size() && (s[i]=='+' ||s[i]=='-')){
+        sign=s[i++]=='-'?-1:1;
+    }
+    while(i<s.size() && (s[i]>='0' && s[i]<='9')){
+        if(res>INT_MAX/10 || (res==INT_MAX/10 && s[i]-'0'>INT_MAX%10)){
+            return sign==1?INT_MAX:INT_MIN;
+        }
+        res=res*10+(s[i++]-'0');
+    }   
+    return res*sign;   
+}
