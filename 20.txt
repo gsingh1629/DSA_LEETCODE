@@ -4,6 +4,7 @@ Given a string with different parenthesis '( ) [ ] { }'
 check whether the string is valid or not i.e each opening bracket has a closing bracket
 
 We can use a stack to store the opening bracket and according to curr character we can make changes
+We use stack so that to match the closing bracket with the most recent opening bracket (i.e. LIFO)
 
 bool isValid(string s) {
     stack<char> st;
