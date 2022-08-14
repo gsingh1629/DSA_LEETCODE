@@ -1,0 +1,28 @@
+Valid Parenthesis
+
+Given a string with different parenthesis '( ) [ ] { }'
+check whether the string is valid or not i.e each opening bracket has a closing bracket
+
+We can use a stack to store the opening bracket and according to curr character we can make changes
+
+bool isValid(string s) {
+    stack<char> st;
+    for(auto c:s){
+        if(c=='(' || c=='[' || c=='{'){
+            st.push(c);
+        }
+        if(c==')' && (st.empty() || st.top()!='(')){
+            return false;
+        }
+        if(c==']' && (st.empty() || st.top()!='[')){
+            return false;
+        }
+        if(c=='}' && (st.empty() || st.top()!='{')){
+            return false;
+        }
+        if(c==')' || c==']' || c=='}'){
+            st.pop();
+        }
+    }
+    return st.empty();
+}
