@@ -1,0 +1,18 @@
+Container with most water
+given an array representing the heights
+find the max water we can have if consider as a container
+
+One approach is that we can go for double loop and check at each index with respect to every other index
+Other one is we can have two pointer approach where we (a type of) shrink the indexes 
+
+int maxArea(vector<int>& height) {
+    //Two Pointer approach
+    int res=0;
+    int left=0,right=height.size()-1;
+    while(left<right){
+        //adjust the indexes according to smaller height
+        int area=(right-left)*(height[left]<height[right]?height[left++]:height[right--]);
+        res=max(res,area);
+    }
+    return res;
+}
