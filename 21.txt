@@ -1,0 +1,25 @@
+Merge Two Sorted Lists
+
+Given two linked list in sorted order we need to merge both of them
+We can create a new linked list and add a new node by comparing two nodes from the linked list
+OR we can use recursion and append the node according to comparison
+
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    if(list1==NULL && list2==NULL){
+        return NULL;
+    }
+    if(list1==NULL){
+        return list2;
+    }
+    if(list2==NULL){
+        return list1;
+    }
+    if(list1->val <= list2->val){
+        list1->next=mergeTwoLists(list1->next,list2);
+        return list1;
+    }
+    else{
+        list2->next=mergeTwoLists(list1,list2->next);
+        return list2;
+    }
+}
