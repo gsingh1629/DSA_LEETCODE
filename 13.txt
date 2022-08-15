@@ -1,0 +1,39 @@
+Roman to Integer
+
+We are given a string that represents a number in roman form we need to find the respective number for that roman integer
+
+First we need to see that if s[i]<s[i+1] then we are subtracting (s[i+1]-s[i])
+We need to traverse over the string the string and do operations according to value of current and next index
+
+int getValue(char c){
+    switch(c){
+        case 'I':
+            return 1;
+        case 'V':
+            return 5;
+        case 'X':
+            return 10;
+        case 'L':
+            return 50;
+        case 'C':
+            return 100;
+        case 'D':
+            return 500;
+        case 'M':
+            return 1000;
+    }
+    return -1;
+}
+int romanToInt(string s) {
+    int res=0;
+    for(int i=0;i<s.size();i++){
+        if(getValue(s[i])<getValue(s[i+1])){
+            res+=getValue(s[i+1])-getValue(s[i]);
+            i++;
+        }
+        else{
+            res+=getValue(s[i]);
+        }
+    }
+    return res;
+}
