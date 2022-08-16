@@ -1,0 +1,27 @@
+Remove nth node from the end of the linked list
+
+Given a linked list and integer n remove the nth node from the end of the linked list
+
+One is we can check the length of the linked list and according to that we can delete the node 
+
+We can also use TWO POINTER approach i.e using a slow and fast pointer
+
+We can go to nth node by using fast pointer and then check if it is null or not, if it is null then that means we need to delete the first node
+then we got to the end of the list by traversing fast pointer till the next is null and simultaneously we traverse slow pointer 
+Then just update the next pointer of the slow to next of next of slow
+
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+    ListNode *slow=head,*fast=head;
+    for(int i=0;i<n;i++){
+        fast=fast->next;
+    }
+    if(fast==NULL){//i.e. n is equal to length 
+        return head->next;
+    }
+    while(fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    slow->next=slow->next->next;
+    return head;
+}
