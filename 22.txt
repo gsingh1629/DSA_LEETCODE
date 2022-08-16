@@ -1,0 +1,26 @@
+Generate Parenthesis
+
+Given n you need to generate a string with balanced parenthesis
+
+We can use recursion i.e.
+when we have nl(left bracket) and nr(right bracket) equal to n we push that string
+when nl<n we add a left bracket
+and when nr<nl we add a right bracket(Important condition for balanced parenthesis)
+
+void helper(int n,int nl,int nr,string temp,vector<string> &res){
+    if(nl==n && nr==n){
+        res.push_back(temp);
+        return ;
+    }
+    if(nl<n){
+        helper(n,nl+1,nr,temp+'(',res);
+    }
+    if(nr<nl){
+        helper(n,nl,nr+1,temp+')',res);
+    }
+}
+vector<string> generateParenthesis(int n) {
+    vector<string> res;
+    helper(n,0,0,"",res);
+    return res;
+}
