@@ -1,0 +1,46 @@
+Reverse Nodes in K groups 
+
+Given a linked list you need to reverse nodes in k groups if number of nodes is less than k, don't reverse
+
+basic reverse is same
+ListNode *curr=head,*prev=NULL,*nxt;
+while(curr && curr->next){
+  nxt=curr->next;
+  curr->next=prev;
+  prev=curr;
+  curr=nxt;
+}
+return prev;
+
+
+Solution
+
+int get_Length(ListNode *head){
+    if(!head){
+        return 0;
+    }
+    int len=0;
+    while(head){
+        len++;
+        head=head->next;
+    }
+    return len;
+}
+ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode *curr=head,*prev=NULL,*nxt;
+    int len=get_Length(head);
+    if(len<k || !head){
+        return head;
+    }
+    int n=k;
+    while(curr && n--){
+        nxt=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=nxt;
+    }
+    if(head){
+        head->next=reverseKGroup(nxt,k);
+    }
+    return prev;
+}
