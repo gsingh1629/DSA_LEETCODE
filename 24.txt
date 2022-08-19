@@ -1,0 +1,18 @@
+Swap Nodes in Pair
+e.g. 1->2->3->4  : 2->1->4->3
+
+We need to swap the nodes of linked lists in pair
+
+We can do is to run a loop for i and i+1 node and swap them then till i or i+1 nodes i null we will do this
+OR
+We can do it using recursion 
+
+ListNode* swapPairs(ListNode* head) {
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    ListNode *temp=head->next;
+    head->next=swapPairs(head->next->next);
+    temp->next=head;
+    return temp;
+}
