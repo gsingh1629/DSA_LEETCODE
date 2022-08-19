@@ -1,0 +1,41 @@
+Merge K Sorted Lists
+
+You are given a array of sorted linked lists and you need to merge all
+
+One is to merge in pairs that merge two sorted lists according to element of the linked lists
+
+ListNode *mergeTwoNodes(ListNode *node1,ListNode *node2){
+    if(node1==NULL && node2==NULL){
+        return NULL;
+    }
+    if(node1==NULL){
+        return node2;
+    }
+    if(node2==NULL){
+        return node1;
+    }
+    if(node1->val<=node2->val){
+        node1->next=mergeTwoNodes(node1->next,node2);
+        return node1;
+    }
+    else{
+        node2->next=mergeTwoNodes(node1,node2->next);
+        return node2;
+    }
+}
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+    int N=lists.size();
+    if(N==0){
+        return NULL;
+    }
+    if(N==1){
+        return lists[0];
+    }
+    if(N==2){
+        return mergeTwoNodes(lists[0],lists[1]);
+    }
+    for(int i=1;i<N;i++){
+        lists[i]=mergeTwoNodes(lists[i],lists[i-1]);
+    }
+    return lists[N-1];
+}
