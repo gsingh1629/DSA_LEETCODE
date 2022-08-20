@@ -1,0 +1,21 @@
+Implement strStr
+
+Given two strings haystack and needle, return the first occurence of the string needle in haystack
+
+We can use double loop 
+OR 
+we cna use the str.substr function, i.e. check for a subtring 
+
+int strStr(string haystack, string needle) {
+    int n1=haystack.size(),n2=needle.size();
+    if(n1<n2){
+        return -1;
+    }
+    for(int i=0;i<=n1-n2;i++){
+        string temp=haystack.substr(i,n2);
+        if(temp==needle){
+            return i;
+        }
+    }
+    return -1;
+}
