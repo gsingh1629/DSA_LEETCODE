@@ -1,0 +1,29 @@
+Palindrome Linked List
+
+Given a linked list you need to tell whether it is a palindrome or not
+
+We can take a stack and store numbers of linked list and then check with linked list if it is palindrome or not
+OR
+Rather than traversing the whole list we can use fast and slow pointer to go till half i.e. storing the half in stack only
+
+bool isPalindrome(ListNode* head) {
+    if(head==NULL || head->next==NULL){
+        return true;
+    }
+    stack<int> st;
+    ListNode *temp=head;
+    while(temp){
+        st.push(temp->val);
+        temp=temp->next;
+    }
+    while(head){
+        if(head->val!=st.top()){
+            return false;
+        }
+        else{
+            head=head->next;
+            st.pop();
+        }
+    }
+    return st.empty();
+}
