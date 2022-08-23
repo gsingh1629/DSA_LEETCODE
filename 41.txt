@@ -1,0 +1,24 @@
+First Missing Positive Integer
+
+Given an integer array we need to find the first missing integer (1...n)
+
+we can take a map and store the count for each positive number, then we can check with a counter starting from 1 if it is present or not
+
+int firstMissingPositive(vector<int>& nums) {
+    unordered_map<int,int> mp;
+    int res=1;
+    for(auto n:nums){
+        if(n>0){
+            mp[n]++;
+        }
+    }
+    int i=0;
+    while(i<mp.size()){
+        if(mp.find(res)==mp.end()){
+            return res;
+        }
+        i++;
+        res++;
+    }
+    return res;
+}
