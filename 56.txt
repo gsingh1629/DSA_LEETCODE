@@ -1,0 +1,24 @@
+Merge intervals
+
+Given a 2d vector where each 1d vector represents an intervals, we need to merge the intervals if possible
+
+We can first sort the 2d vector which will sort the 2d vector according to first element of the interval
+then we can compare the end interval of i and start interval of the i+1 and do that accordingly
+
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    sort(intervals.begin(),intervals.end());
+    vector<vector<int>> res;
+    int start=intervals[0][0],end=intervals[0][1];
+    for(int i=1;i<intervals.size();i++){
+        if(intervals[i][0]<=end){
+            end=max(end,intervals[i][1]);
+        }
+        else{
+            res.push_back({start,end});
+            start=intervals[i][0];
+            end=intervals[i][1];
+        }
+    }
+    res.push_back({start,end});
+    return res;
+}
