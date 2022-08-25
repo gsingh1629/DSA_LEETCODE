@@ -1,0 +1,19 @@
+Length of last word
+
+given a string we need to tell the length of the last word present in that string
+
+we can start from end of the string and traverse in backward direction 
+  check if it is space that move the pointer
+  if it is character than count the length of the that word
+
+int lengthOfLastWord(string s) {
+    int i=s.size()-1,res=0;
+    while(i>=0 && s[i]==' '){
+        i--;
+    }
+    while(i>=0 && s[i]!=' '){
+        res++;
+        i--;
+    }
+    return res;
+}
