@@ -1,0 +1,25 @@
+Ransom Note
+
+Given two strings magazine and ransom, we need to tell whether ransom string can be created from magazine or not
+
+we can create a map and store the count for each character of magazine
+then we can check with ransom if the same character is present in same number
+
+bool canConstruct(string ransomNote, string magazine) {
+    unordered_map<char,int> mp;
+    for(auto m:magazine){
+        mp[m]++;
+    }
+    for(auto r:ransomNote){
+        if(mp.find(r)!=mp.end()){
+            mp[r]--;
+            if(mp[r]==0){
+                mp.erase(r);
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    return true;
+}
