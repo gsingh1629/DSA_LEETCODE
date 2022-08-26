@@ -1,0 +1,61 @@
+Spiral Matrix
+
+Given  2d matrix you need to create a vector which contains the values in spiral order
+
+we can keep the bound i.e. up,down,right,left limits
+create a direction variable which changes according to spiral
+create two pointers which will fetch the value from matrix accordingly
+
+
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+    vector<int> res;
+    int up=0,down=matrix.size()-1,left=0,right=matrix[0].size()-1;
+    int i=0,j=0;
+    int direction=0;
+    while(up<=down && left<=right){
+        res.push_back(matrix[i][j]);
+        switch(direction){
+            case 0://right
+                if(j>=right){
+                    direction=1;
+                    up++;
+                    i++;
+                }
+                else{
+                    j++;
+                }
+                break ;
+            case 1://down
+                if(i>=down){
+                    direction=2;
+                    right--;
+                    j--;
+                }
+                else{
+                    i++;
+                }
+                break;
+            case 2://left
+                if(j<=left){
+                    direction=3;
+                    down--;
+                    i--;
+                }
+                else{
+                    j--;
+                }
+                break;
+            case 3://up
+                if(i<=up){
+                    direction=0;
+                    left++;
+                    j++;
+                }
+                else{
+                    i--;
+                }
+                break;
+        }
+    }
+    return res;
+}
