@@ -1,0 +1,22 @@
+Remove Duplicates from sorted list
+
+We are given a linked list we need to remove duplicates from it
+e.g. 1->1->1  : 1
+
+we can create a pointer that will traverse and check if value of head->val==head->next->val and then remove the next pointer
+
+ListNode* deleteDuplicates(ListNode* head) {
+    if(head==NULL|| head->next==NULL){
+        return head;
+    }
+    ListNode *temp=head;
+    while(temp && temp->next){
+        if(temp->val==temp->next->val){
+            temp->next=temp->next->next;
+        }
+        else{
+            temp=temp->next;
+        }
+    }
+    return head;
+}
