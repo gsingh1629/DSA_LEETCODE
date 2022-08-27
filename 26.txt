@@ -1,0 +1,30 @@
+Remove Deuplicates from Sorted Array
+
+Given an array in non-decreasing order you need to remove the duplicates in-place
+
+If it was not in-place then we could take a map and keep track of count and then according to that modify the element of array
+OR
+We could track the count of duplicates and then use that count to keep a pointer over i-count to store the unique elements
+
+int removeDuplicates(vector<int>& nums) {
+    int count=0;
+    for(int i=1;i<nums.size();i++){
+        if(nums[i]==nums[i-1]){
+            count++;
+        }
+        else{
+            nums[i-count]=nums[i];
+        }
+    }
+    return nums.size()-count;
+    // OR If not in-place
+    // map<int,int> mp;
+    // for(auto n:nums){
+    //     mp[n]++;
+    // }
+    // int i=0;
+    // for(auto m:mp){
+    //     nums[i++]=m.first;
+    // }
+    // return i;
+}
