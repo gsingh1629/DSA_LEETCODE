@@ -1,0 +1,38 @@
+Rotate List
+
+Given a linked list with an integer k you need to rotate the list k times
+1->2->3->4->5 , k=2
+
+5->1->2->3->4
+4->5->1->2->3 ans
+
+first we can calculate the size of the linked 
+create two pointes slow and fast traverse the fast till k!=0 and then take fast to last and traverse both slow and fast and then make new links
+
+ListNode* rotateRight(ListNode* head, int k) {
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    ListNode *slow=head,*fast=head;
+    int len=0;
+    while(slow!=NULL){
+        len++;
+        slow=slow->next;
+    }
+    k=k%len;
+    slow=head;
+    while(k--){
+        fast=fast->next;
+    }
+    if(fast==NULL){
+        return head;
+    }
+    while(fast->next){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    fast->next=head;
+    head=slow->next;
+    slow->next=NULL;
+    return head;       
+}
