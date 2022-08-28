@@ -1,0 +1,22 @@
+Set Matrix Zeroes
+
+Given a matrix, it contains zero at location [i][j] you need to convert the whole ith row and jth column to zero
+
+void setZeroes(vector<vector<int>>& matrix) {
+    unordered_map<int,int> row,col;
+    for(int i=0;i<matrix.size();i++){
+        for(int j=0;j<matrix[0].size();j++){
+            if(matrix[i][j]==0){
+                row[i]=2;
+                col[j]=2;
+            }
+        }
+    }
+    for(int i=0;i<matrix.size();i++){
+        for(int j=0;j<matrix[0].size();j++){
+            if(row[i]==2 || col[j]==2){
+                matrix[i][j]=0;
+            }
+        }
+    }
+}
