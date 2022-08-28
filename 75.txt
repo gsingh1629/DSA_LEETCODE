@@ -1,0 +1,27 @@
+Sort Colors
+
+Given an array with numbers 0,1,2
+0-> red
+1-> white
+2-> blue
+you need to sort the colors i.e. 0 on left and 2 on right in-place
+
+We can use the sort function directly (but not permitted in this question)
+OR
+We can keep three pointers i - to traverse the whole array, r - to point to red color, b - to point to blue color
+
+void sortColors(vector<int>& nums) {
+    // sort(nums.begin(),nums.end());
+    int r=0,i=0,b=nums.size()-1;
+    while(i<=b){
+        if(nums[i]==0){
+            swap(nums[i++],nums[r++]);
+        }
+        else if(nums[i]==2){//
+            swap(nums[i],nums[b--]);
+        }
+        else{
+            i++;
+        }
+    }
+}
