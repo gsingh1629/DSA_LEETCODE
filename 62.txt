@@ -1,0 +1,17 @@
+Unique Paths
+
+given a m and n, you need to tell if a robot is placed at matrix[0][0] and we have to go to matrix[m-1][n-1], if robot can move only right or down, we need to tell
+number of ways in which robot can reach m-1,n-1
+
+as we can see in row=0 and col=0, there is only 1 way because it can move right or down
+and also i,j depends on i-1,j and i,j-1 so we need to traverse the matrix and check for these locations
+
+int uniquePaths(int m, int n) {
+    vector<vector<int>> res(m, vector<int> (n,1));
+    for(int i=1;i<m;i++){
+        for(int j=1;j<n;j++){
+            res[i][j]=res[i-1][j]+res[i][j-1];
+        }
+    }
+    return res[m-1][n-1];
+}
