@@ -6,6 +6,8 @@ number of ways in which robot can reach m-1,n-1
 as we can see in row=0 and col=0, there is only 1 way because it can move right or down
 and also i,j depends on i-1,j and i,j-1 so we need to traverse the matrix and check for these locations
 
+Also this is a 2d DP as this question can be divided into subproblems and each subproblem depends on previous one
+
 int uniquePaths(int m, int n) {
     vector<vector<int>> res(m, vector<int> (n,1));
     for(int i=1;i<m;i++){
