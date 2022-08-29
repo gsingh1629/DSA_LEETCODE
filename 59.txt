@@ -1,0 +1,62 @@
+Spiral Matrix II
+
+given n, you need to create n*n matrix where the elements should be filled in spiral order
+n=3
+1 2 3
+8 9 4
+7 6 5
+
+We can do the same as in spiral matrix, where we keep the bounds as up, left, down, right and check the conditions according to direction
+
+vector<vector<int>> generateMatrix(int n) {
+    int up=0,down=n-1,left=0,right=n-1;
+    vector<vector<int>> res(n,vector<int> (n,0));
+    int counter=1;
+    int i=0,j=0,direction=0;
+    while(up<=down && left<=right){
+        res[i][j]=counter++;
+        switch(direction){
+            case 0://left
+                if(j>=right){
+                    up++;
+                    i++;
+                    direction=1;
+                }
+                else{
+                   j++; 
+                }
+                break;
+            case 1://down
+                if(i>=down){
+                    right--;
+                    j--;
+                    direction=2;
+                }
+                else{
+                    i++;
+                }
+                break;
+            case 2://right
+                if(j<=left){
+                    down--;
+                    i--;
+                    direction=3;
+                }
+                else{
+                    j--;
+                }
+                break;
+            case 3://up
+                if(i<=up){
+                    left++;
+                    j++;
+                    direction=0;
+                }
+                else{
+                    i--;
+                }
+                break;
+        }
+    }
+    return res;
+}
