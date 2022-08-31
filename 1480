@@ -1,0 +1,13 @@
+Running sum of 1d array
+
+Given a 1d array you need to find the sum till each index
+1,2,3,4 -> 1,3,4,10
+
+We can use a for loop to iterate from i=1 and go till last and do arr[i]+=arr[i-1];
+
+vector<int> runningSum(vector<int>& nums) {
+    for(int i=1;i<nums.size();i++){
+        nums[i]+=nums[i-1];
+    }
+    return nums;
+}
