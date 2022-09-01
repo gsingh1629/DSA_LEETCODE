@@ -1,0 +1,26 @@
+Search a 2D matrix
+
+Given a 2D matrix where the rows and columns both are sorted you need to find the target in the matrix
+
+sorted matrix -> 2 pointer approach, it is how to figure the vaalues of the pointer
+if we take both pointer in a row then if we need one more pointer which points to the end of the column so that we can see in a range
+
+We can keep a pointer to last of row and to start of column
+  then check if the number>target we need to do row--
+  else if target>number we need to do col++
+
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+    int row=matrix.size()-1,col=0;
+    while(row>=0 && col<matrix[0].size()){
+        if(matrix[row][col]>target){
+            row--;
+        }
+        else if(matrix[row][col]<target){
+            col++;
+        }
+        else{
+            return true;
+        }
+    }
+    return false;
+}
