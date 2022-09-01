@@ -1,0 +1,23 @@
+Is Subsequence
+
+Given two strings s and t we need to tell whether s is subsequence of t or not
+
+We can use map to keep track of characters of s but in this approach the relative order of the characters may not be same i.e. maybe the characters are present
+but not the subsequence
+OR
+We can keep two pointers each on s and t and traverse each string if both the characters are equal we can move the pointers next if not then we need to move only
+the pointer of t
+
+bool isSubsequence(string s, string t) {
+    int i=0,j=0;
+    while(i<s.size() && j<t.size()){
+        if(s[i]==t[j]){
+            i++;
+            j++;
+        }
+        else{
+            j++;
+        }
+    }
+    return i==s.size();
+}
