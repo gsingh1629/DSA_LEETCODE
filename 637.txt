@@ -1,0 +1,31 @@
+Average of Levels in Binary Tree
+
+Given a binary tree we need to find the average of each level
+
+We can do BFS and then calculate the sum of each level then find it's average
+
+for BFS we need a queue 
+
+vector<double> averageOfLevels(TreeNode* root) {
+    vector<double> res;
+    queue<TreeNode *> q;
+    TreeNode *curr;
+    q.push(root);
+    while(!q.empty()){
+        double sum=0.0;
+        int size=q.size();
+        for(int i=0;i<size;i++){
+            curr=q.front();
+            q.pop();
+            if(curr->left){
+                q.push(curr->left);
+            }
+            if(curr->right){
+                q.push(curr->right);
+            }
+            sum+=curr->val;
+        }
+        res.push_back(sum/size);
+    }
+    return res;
+}
