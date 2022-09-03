@@ -1,0 +1,24 @@
+Linked List II 
+
+Given a linked list with cycle we need to tell from which index the cycle begins, we need to return that node
+
+We can use two pointer approch, one moving by x and other by 2x
+  
+ListNode *detectCycle(ListNode *head) {
+    ListNode *slow=head,*fast=head;
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast){
+            cout<<slow->val<<" "<<fast->val<<endl;
+            slow=head;
+            while(fast!=slow){
+                slow=slow->next;
+                fast=fast->next;
+                cout<<slow->val<<" "<<fast->val<<endl;
+            }
+            return slow;
+        }
+    }
+    return NULL;
+}
