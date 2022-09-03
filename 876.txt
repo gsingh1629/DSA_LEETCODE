@@ -1,0 +1,14 @@
+Middle of the linked list
+
+Given a linked list we need to return middle node of the linked list
+
+We can use two pointer approach and traverse the list by moving one pointer by x speed and other by 2x speed
+
+ListNode* middleNode(ListNode* head) {
+    ListNode *slow=head,*fast=head;
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+}
