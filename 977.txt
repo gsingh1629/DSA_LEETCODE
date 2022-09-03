@@ -1,0 +1,22 @@
+Squares of Sorted Array
+
+Given a sorted array you need to create a sorted array with squares from given array
+
+you can use two pointer approach where we can compare the square of both index i.e. front and end
+then accordingly we can push to end of vector
+
+vector<int> sortedSquares(vector<int>& nums) {
+    int left=0,right=nums.size()-1;
+    vector<int> res(nums.size(),0);
+    for(int i=nums.size()-1;i>=0;i--){
+        if(nums[left]*nums[left]>=nums[right]*nums[right]){
+            res[i]=nums[left]*nums[left];
+            left++;
+        }
+        else{
+            res[i]=nums[right]*nums[right];
+            right--;
+        }
+    }
+    return res;
+}
