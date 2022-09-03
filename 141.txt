@@ -1,0 +1,19 @@
+Linked List Cycle
+
+Given a linked list we need to identify if there is any cycle or not
+
+We can use two pointer approach and iterate over the linked list with one pointer moving by x and other by 2x
+**both the pointers will be equal at the point from where the cycle link will start and point to inside the list
+e.g. 3 -> 2 -> 0 -> -4 and then -4 and 2 are linked, therefore the pointers will be equal at -4 i.e. from where the cycle link will start
+
+bool hasCycle(ListNode *head) {
+    ListNode *slow=head,*fast=head;
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast){
+            return true;
+        }
+    }
+    return false;
+}
