@@ -1,0 +1,18 @@
+Same Tree
+
+Given two trees, we need to check whether both the trees are identical or not
+
+We can use recursion and check if value of both node are equal or not and then we can check for left and right node for both 
+
+bool isSameTree(TreeNode* p, TreeNode* q) {
+    if(p==NULL && q==NULL){
+        return  true;
+    }
+    if(p==NULL){
+        return false;
+    }
+    if(q==NULL){
+        return false;
+    }
+    return p->val==q->val && isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+}
