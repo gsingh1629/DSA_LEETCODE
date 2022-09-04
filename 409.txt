@@ -1,0 +1,23 @@
+Longest Palindrome
+
+Given a string, we need to return the longest palindrome that can be formed using the characters from that string
+
+we can use a map to store the count and then perform the calculations
+
+int longestPalindrome(string s) {
+    unordered_map<char,int> mp;
+    for(auto c:s){
+        mp[c]++;
+    }
+    int res=0,odd=0;
+    for(auto m:mp){
+        if(m.second %2==0){
+            res+=m.second;
+        }
+        else{
+            res+=m.second-1;
+            odd=1;
+        }
+    }
+    return res+odd;
+}
