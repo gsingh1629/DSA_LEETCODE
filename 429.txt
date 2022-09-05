@@ -1,0 +1,28 @@
+N-ary Tree Level Order Traversal
+
+Given a n-ary tree we need to do level order traversal and return  vector of vector
+
+We can do BFS traversal to achieve this, i.e. we need queue for this
+
+vector<vector<int>> levelOrder(Node* root) {
+    if(root==NULL){
+        return {};
+    }
+    vector<vector<int>> res;
+    queue<Node *> q;
+    q.push(root);
+    while(!q.empty()){
+        int size=q.size();
+        vector<int> currLevel;
+        for(int i=0;i<size;i++){
+            Node *temp=q.front();
+            q.pop();
+            currLevel.push_back(temp->val);
+            for(auto n:temp->children){
+                q.push(n);
+            }
+        }
+        res.push_back(currLevel);
+    }
+    return res;
+}
