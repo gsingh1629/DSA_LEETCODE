@@ -1,0 +1,34 @@
+Permutations in string
+
+given two strings s1 and s2 we need to check if any permutation of s1 is present in s2 or not 
+
+we can first keep the count of the characters in s1 using map
+Then we need to apply sliding window algorithm
+
+bool checkInclusion(string s1, string s2) {
+    unordered_map<char,int> mp;
+    for(auto c:s1){
+        mp[c]++;
+    }
+    //now sliding window
+    int i=0,j=0,m=s1.size();
+    int count=m;
+    while(j<s2.size()){
+        if(mp[s2[j]]>0){
+            count--;
+        }
+        mp[s2[j]]--;
+        j++;
+        while(count==0){
+            if(j-i==m){
+                return true;
+            }
+            mp[s2[i]]++;
+            if(mp[s2[i]]>0){
+                count++;
+            }
+            i++;
+        }
+    }
+    return false;
+}
