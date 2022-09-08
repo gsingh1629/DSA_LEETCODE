@@ -1,0 +1,19 @@
+Binary Tree Inorder Traversal
+
+We are given root of a tree and we need to do inorder traversal
+
+we can use reursion and inorder is Left Node Right
+
+void helper(vector<int> &res, TreeNode *root){
+    if(root==NULL){
+        return ;
+    }
+    helper(res,root->left);
+    res.push_back(root->val);
+    helper(res,root->right);
+}
+vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> res;
+    helper(res,root);
+    return res;
+}
