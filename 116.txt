@@ -1,0 +1,31 @@
+Populating next right pointer in each node
+
+we are given a tree we need to add right node to each node, if next level then add #
+
+Node* connect(Node* root) {
+    if(root==NULL){
+        return NULL;
+    }
+    queue<Node *> q;
+    q.push(root);
+    while(!q.empty()){
+        int size=q.size();
+        for(int i=0;i<size;i++){
+            Node *curr=q.front();
+            q.pop();
+            if(i==size-1){
+                curr->next=NULL;
+            }
+            else{
+                curr->next=q.front();
+            }
+            if(curr->left){
+                q.push(curr->left);
+            }
+            if(curr->right){
+                q.push(curr->right);
+            }
+        }
+    }
+    return root;
+}
